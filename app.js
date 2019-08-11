@@ -58,7 +58,7 @@ const createPDF = async (url, format) => {
         await browser.close();
         return pdf;
     } catch(error) {
-        console.log(error);
+        console.log(error.message);
     }
     
 

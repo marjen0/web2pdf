@@ -4,7 +4,7 @@
     <h1>Transform website to PDF!</h1>
 
     <% if(error_msg && error_msg.length > 0)  { %>
-        <p><%= error_msg %> </p>
+        <p class='error'><%= error_msg %> </p>
     <% } %> 
      
     <form action="/" method="POST">
@@ -25,7 +25,7 @@
         <button type="submit">Submit</button>
     </form>
     <% if(success_msg && success_msg.length > 0)  { %>
-        <p><%= success_msg %> <a href="/download">click here</a> to download</p>
+        <p class='download'><%= success_msg %> <a href="/download">click here</a> to download</p>
     <% } %> 
 </div>
 

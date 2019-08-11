@@ -17,7 +17,7 @@ body {
     max-width: 90%;
     width: 800px;
     margin: 0 auto;
-    padding: 1.5em;    
+    padding: 1.5em;   
 }
 h1 {
     color: #fff;
@@ -46,8 +46,28 @@ form select {
 form button {
     padding: 5px 10px;
     border: none;
-    background: linear-gradient(to right ,yellow, orange);
+    /* background: linear-gradient(to right ,yellow, orange); */
+    background: linear-gradient(to right,yellow, orange);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     font-weight: bold;
+}
+form button:hover {
+    animation: buttonanimation;
+}
+.error {
+    display: inline-block;
+    border: 2px solid yellow;
+    padding: 5px 15px;
+    color: rgb(255, 255, 255);
+    margin: 10px 0;
+    border-radius: 5px;
+}
+.download {
+    margin-top: 15px;
+    color: white;
+    font-size: 1.2em;
+}
+.download a {
+    color:yellow;
 }
