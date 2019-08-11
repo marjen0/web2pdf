@@ -2,6 +2,13 @@
 
 <div class="content">
     <h1>Transform website to PDF!</h1>
+    <% if(success_msg && success_msg.length > 0)  { %>
+        <p><%= success_msg %> </p>
+    <% } %> 
+    <% if(error_msg && error_msg.length > 0)  { %>
+        <p><%= error_msg %> </p>
+    <% } %> 
+     
     <form action="/" method="POST">   
         <input type="text" name="url" id="url" placeholder='Enter the URL of website'>
         <button type="submit">Submit</button>
