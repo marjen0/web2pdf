@@ -25,29 +25,38 @@ app.get('/', (req,res) => {
     res.render('index');
 });
 app.post('/', async (req,res) => {
-    const url = req.body.url;
+    const { url, format } = req.body;
     if(!url) {
         req.flash('error_msg', 'No URL provided');
-        return res.render('index');
+        return res.redirect('/');
     }
-    createPDF(url);
-    req.flash('success_msg', 'Your PDF is ready!');
-    return res.download(path.join(__dirname,'public','pdf','web.pdf'));
+    if(format === 'empty') {
+        req.flash('error_msg', 'Please select format of PDF');
+        return res.redirect('/');
+    }
+    createPDF(url,format).then(pdf => {
+        req.flash('success_msg', 'Your PDF is ready!');
+        return res.redirect('/')
+    });
 });
+app.get('/download', (req,res) => {
+    return res.download(path.join(__dirname,'public','pdf','web.pdf'));
+})
 
 
-const createPDF = async (url) => {
+const createPDF = async (url, format) => {
     try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
-        await page.goto(url,{waitUntil: 'networkidle2'});
+        await page.goto(url,{waitUntil: 'networkidle0'});
         await page.emulateMedia('screen');
-        await page.pdf({
+        const pdf = await page.pdf({
             path: path.join(__dirname,'public','pdf','web.pdf'),
-            format: 'A4',
+            format: format,
             printBackground: true,
         });
         await browser.close();
+        return pdf;
     } catch(error) {
         console.log(error);
     }

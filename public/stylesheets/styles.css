@@ -35,8 +35,13 @@ form input {
     outline: none;
     border: none;
 }
-form input, button {
+form input, button, select {
     height: 100%;
+}
+form select {
+    border-radius: 10px;
+    outline: none;
+    border: none;
 }
 form button {
     padding: 5px 10px;
